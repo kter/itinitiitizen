@@ -50,6 +50,6 @@ test:
 #
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  database: itizen_production
+  username: itizen
+  password: <%= ENV['ITIZEN_DATABASE_PASSWORD'] %>
