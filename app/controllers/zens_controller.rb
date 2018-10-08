@@ -5,16 +5,16 @@ class ZensController < ApplicationController
   # GET /zens.json
   def index
     @zens = Zen.all
+    if params[:id].present?
+      set_zen
+    else
+      @zen = Zen.new
+    end
   end
 
   # GET /zens/1
   # GET /zens/1.json
   def show
-  end
-
-  # GET /zens/new
-  def new
-    @zen = Zen.new
   end
 
   # GET /zens/1/edit
@@ -28,7 +28,7 @@ class ZensController < ApplicationController
 
     respond_to do |format|
       if @zen.save
-        format.html { redirect_to @zen, notice: 'Zen was successfully created.' }
+        format.html { redirect_to zens_url, notice: 'Zen was successfully created.' }
         format.json { render :show, status: :created, location: @zen }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ZensController < ApplicationController
   def update
     respond_to do |format|
       if @zen.update(zen_params)
-        format.html { redirect_to @zen, notice: 'Zen was successfully updated.' }
+        format.html { redirect_to zens_url, notice: 'Zen was successfully updated.' }
         format.json { render :show, status: :ok, location: @zen }
       else
         format.html { render :edit }

@@ -2,6 +2,8 @@
 
 <h1>Zens</h1>
 
+<%= render 'form', zen: @zen %>
+
 <table>
   <thead>
     <tr>
@@ -17,7 +19,7 @@
         <td><%= zen.content %></td>
         <td><%= zen.deleted %></td>
         <td><%= link_to 'Show', zen %></td>
-        <td><%= link_to 'Edit', edit_zen_path(zen) %></td>
+        <td><%= link_to 'Edit', zens_path(id: zen.id) %></td>
         <td><%= link_to 'Destroy', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -25,5 +27,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Zen', new_zen_path %>
