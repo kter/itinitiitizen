@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 2018_10_08_052039) do
 
   create_table "zens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.text "content"
-    t.boolean "deleted"
+    t.text "content", null: false
+    t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
