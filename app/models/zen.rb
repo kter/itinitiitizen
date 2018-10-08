@@ -1,0 +1,2 @@
+class Zen < ApplicationRecord
+end

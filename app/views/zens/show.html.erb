@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @zen.content %>
+</p>
+
+<p>
+  <strong>Deleted:</strong>
+  <%= @zen.deleted %>
+</p>
+
+<%= link_to 'Edit', edit_zen_path(@zen) %> |
+<%= link_to 'Back', zens_path %>
