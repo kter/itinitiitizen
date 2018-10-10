@@ -35,6 +35,10 @@ Parameters:
     Type: AWS::EC2::SecurityGroup::Id
   Subnets:
     Type: List<AWS::EC2::Subnet::Id>
+  DNSDomain:
+    Description: Domain name
+    Type: String
+    Default: "kter.jp."
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -425,3 +429,26 @@ Resources:
   #     ArtifactStore: 
   #       Type: S3
   #       Location: !Ref ArtifactStoreS3
+  ItizenALB:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      AvailabilityZones:
+      - "us-east-1a"
+      Listeners:
+      - LoadBalancerPort: '80'
+        InstancePort: '80'
+        Protocol: HTTP
+  RedshiftDNSName:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Ref DNSDomain
+      RecordSets:
+        - Name: !Join
+            - ''
+            - - 'itizen'
+              - '.'
+              - !Ref DNSDomain
+          Type: A
+          AliasTarget:
+            HostedZoneId: !GetAtt ItizenALB.CanonicalHostedZoneNameID
+            DNSName: !GetAtt ItizenALB.DNSName
