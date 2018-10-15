@@ -3,9 +3,9 @@
 validate:
 	aws cloudformation validate-template --template-body file://pipeline.yml
 create:validate
-	aws cloudformation create-stack --stack-name itizen --template-body file://pipeline.yml --capabilities CAPABILITY_IAM --parameters ParameterKey=Subnets,ParameterValue=subnet-37ac516f ParameterKey=SourceSecurityGroup,ParameterValue=sg-2451e85d
+	aws cloudformation create-stack --stack-name itizen --template-body file://pipeline.yml --capabilities CAPABILITY_IAM --parameters ParameterKey=Subnets,ParameterValue=subnet-37ac516f ParameterKey=SourceSecurityGroup,ParameterValue=sg-04ce930d54d7241df ParameterKey=VPC,ParameterValue=vpc-cecea5aa
 update:validate
-	aws cloudformation update-stack --stack-name itizen --template-body file://pipeline.yml --capabilities CAPABILITY_IAM --parameters ParameterKey=Subnets,ParameterValue=subnet-37ac516f ParameterKey=SourceSecurityGroup,ParameterValue=sg-2451e85d
+	aws cloudformation update-stack --stack-name itizen --template-body file://pipeline.yml --capabilities CAPABILITY_IAM --parameters ParameterKey=Subnets,ParameterValue=subnet-37ac516f ParameterKey=SourceSecurityGroup,ParameterValue=sg-04ce930d54d7241df ParameterKey=VPC,ParameterValue=vpc-cecea5aa
 delete-artifact:
 	aws s3 rb --force s3://`aws s3 ls | grep itizen-artifact | awk '{ print $$3 }' `
 delete:delete-artifact
