@@ -115,9 +115,9 @@ Parameters:
     Properties:
       RepositoryName: !Ref AppImageRepositoryName
   ArtifactStoreS3:
-    Type: 'AWS::S3::Bucket'
+    Type: AWS::S3::Bucket
   CodePipelineRole: 
-    Type: "AWS::IAM::Role"
+    Type: AWS::IAM::Role
     Properties: 
       AssumeRolePolicyDocument: 
         Version: "2012-10-17"
@@ -305,7 +305,7 @@ Parameters:
         BuildSpec: buildspec_app.yml
       TimeoutInMinutes: 5
   AppPipeline: 
-    Type: "AWS::CodePipeline::Pipeline"
+    Type: AWS::CodePipeline::Pipeline
     Properties: 
       RoleArn: !GetAtt CodePipelineRole.Arn
       Stages: 
@@ -369,7 +369,7 @@ Parameters:
         Type: S3
         Location: !Ref ArtifactStoreS3
   # WebPipeline: 
-  #   Type: "AWS::CodePipeline::Pipeline"
+  #   Type: AWS::CodePipeline::Pipeline
   #   Properties: 
   #     RoleArn: !GetAtt CodePipelineRole.Arn
   #     Stages: 
