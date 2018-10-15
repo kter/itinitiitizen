@@ -39,7 +39,6 @@ Parameters:
     Description: Domain name
     Type: String
     Default: "kter.jp."
-Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -66,6 +65,10 @@ Resources:
     Properties:
       Cluster: !Ref ECSCluster
       DesiredCount: !Ref DesiredCount
+      LoadBalancers:
+      - ContainerName: app
+        ContainerPort: '80'
+        TargetGroupArn: !Ref 'ECSTG'
       TaskDefinition: !Ref TaskDefinition
       LaunchType: FARGATE
       NetworkConfiguration:
@@ -452,3 +455,39 @@ Resources:
           AliasTarget:
             HostedZoneId: !GetAtt ItizenALB.CanonicalHostedZoneNameID
             DNSName: !GetAtt ItizenALB.DNSName
+  ALBListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    DependsOn: ECSServiceRole
+    Properties:
+      DefaultActions:
+      - Type: forward
+        TargetGroupArn: !Ref 'ECSTG'
+      LoadBalancerArn: !Ref 'ECSALB'
+      Port: '80'
+      Protocol: HTTP
+  ECSALBListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    DependsOn: ALBListener
+    Properties:
+      Actions:
+      - Type: forward
+        TargetGroupArn: !Ref 'ECSTG'
+      Conditions:
+      - Field: path-pattern
+        Values: [/]
+      ListenerArn: !Ref 'ALBListener'
+      Priority: 1
+  ECSTG:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    DependsOn: ECSALB
+    Properties:
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      Name: ECSTG
+      Port: 80
+      Protocol: HTTP
+      UnhealthyThresholdCount: 2
+      VpcId: !Ref 'VpcId'
