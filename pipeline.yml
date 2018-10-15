@@ -436,7 +436,7 @@ Resources:
   #       Type: S3
   #       Location: !Ref ArtifactStoreS3
   ItizenALB:
-    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       AvailabilityZones:
       - "us-east-1a"
@@ -456,7 +456,7 @@ Resources:
               - !Ref DNSDomain
           Type: A
           AliasTarget:
-            HostedZoneId: !GetAtt ItizenALB.CanonicalHostedZoneNameID
+            HostedZoneId: !GetAtt ItizenALB.CanonicalHostedZoneID
             DNSName: !GetAtt ItizenALB.DNSName
   ALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
@@ -464,7 +464,7 @@ Resources:
       DefaultActions:
       - Type: forward
         TargetGroupArn: !Ref 'ECSTG'
-      LoadBalancerArn: !Ref 'ItizenALB'
+      LoadBalancerArn: !Ref ItizenALB
       Port: '80'
       Protocol: HTTP
   ECSALBListenerRule:
