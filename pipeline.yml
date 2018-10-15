@@ -35,10 +35,13 @@ Parameters:
     Type: AWS::EC2::SecurityGroup::Id
   Subnets:
     Type: List<AWS::EC2::Subnet::Id>
+  VPC:
+    Type: List<AWS::EC2::VPC::Id>
   DNSDomain:
     Description: Domain name
     Type: String
     Default: "kter.jp."
+Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
     Properties:
@@ -457,12 +460,11 @@ Parameters:
             DNSName: !GetAtt ItizenALB.DNSName
   ALBListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    DependsOn: ECSServiceRole
     Properties:
       DefaultActions:
       - Type: forward
         TargetGroupArn: !Ref 'ECSTG'
-      LoadBalancerArn: !Ref 'ECSALB'
+      LoadBalancerArn: !Ref 'ItizenALB'
       Port: '80'
       Protocol: HTTP
   ECSALBListenerRule:
@@ -479,7 +481,7 @@ Parameters:
       Priority: 1
   ECSTG:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    DependsOn: ECSALB
+    DependsOn: ItizenALB
     Properties:
       HealthCheckIntervalSeconds: 10
       HealthCheckPath: /
@@ -490,4 +492,4 @@ Parameters:
       Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 2
-      VpcId: !Ref 'VpcId'
+      VpcId: !Ref 'VPC'
