@@ -32,7 +32,7 @@ Parameters:
     Type: Number
     Default: 0
   SourceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup::Id
+    Type: List<AWS::EC2::SecurityGroup::Id>
   Subnets:
     Type: List<AWS::EC2::Subnet::Id>
   VPC:
@@ -438,12 +438,9 @@ Resources:
   ItizenALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      AvailabilityZones:
-      - "us-east-1a"
-      Listeners:
-      - LoadBalancerPort: '80'
-        InstancePort: '80'
-        Protocol: HTTP
+      Subnets: !Ref Subnets
+      Type: application
+      SecurityGroups: !Ref SourceSecurityGroup
   RedshiftDNSName:
     Type: AWS::Route53::RecordSetGroup
     Properties:
