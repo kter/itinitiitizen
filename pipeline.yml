@@ -30,7 +30,7 @@ Parameters:
   DesiredCount:
     Description: ECS desired count
     Type: Number
-    Default: 0
+    Default: 1
   SourceSecurityGroup:
     Type: List<AWS::EC2::SecurityGroup::Id>
   Subnets:
@@ -77,8 +77,7 @@ Resources:
       NetworkConfiguration:
         AwsvpcConfiguration:
           AssignPublicIp: ENABLED
-          SecurityGroups:
-            - !Ref SourceSecurityGroup
+          SecurityGroups: !Ref SourceSecurityGroup
           Subnets: !Ref Subnets
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
@@ -485,6 +484,7 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 5
       HealthyThresholdCount: 2
+      TargetType: ip
       Name: ECSTG
       Port: 80
       Protocol: HTTP
