@@ -27,6 +27,10 @@ Parameters:
     Description: Email Address
     Type: String
     Default: "me@kter.jp"
+  PipelineStackName:
+    Type: String
+    Description: Name of pipeline stackname ( for closs stack reference )
+    Default: pipeline-itizen
 Resources:
   # WebImageRepository:
   #   Type: AWS::ECR::Repository
@@ -283,8 +287,10 @@ Resources:
                 Version: 1
                 Provider: ECS
               Configuration:
-                ClusterName: !Ref ECSCluster
-                ServiceName: !Ref ECSService
+                ClusterName:
+                  Fn::ImportValue: !Sub ${PipelineStackName}-ECSCluster
+                ServiceName:
+                  Fn::ImportValue: !Sub ${PipelineStackName}-ECSService
                 FileName: appimagedefinitions.json
               RunOrder: 1
       ArtifactStore: 
