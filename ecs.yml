@@ -96,7 +96,7 @@ Resources:
       Subnets: !Ref Subnets
       Type: application
       SecurityGroups: !Ref SourceSecurityGroup
-  RedshiftDNSName:
+  FrontDNSRecord:
     Type: AWS::Route53::RecordSetGroup
     Properties:
       HostedZoneName: !Ref DNSDomain
