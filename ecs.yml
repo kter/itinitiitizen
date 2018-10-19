@@ -1,5 +1,4 @@
 # TODO: Nested Stack https://maya2250.hatenablog.com/entry/2018/06/23/231826
-# TODO: ImportValue (ECR)
 Parameters:
   # WebImageRepositoryName:
   #   Default: "web"
