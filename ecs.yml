@@ -46,6 +46,7 @@ Resources:
       LogGroupName: !Sub /ecs/${AWS::StackName}
   ECSService:
     Type: AWS::ECS::Service
+    DependsOn: TaskDefinition
     Properties:
       Cluster: !Ref ECSCluster
       DesiredCount: !Ref DesiredCount
@@ -62,6 +63,7 @@ Resources:
           Subnets: !Ref Subnets
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
+    DependsOn: ItizenALB
     Properties:
       Family: !Sub ${AWS::StackName}-app-web
       Memory: 512
