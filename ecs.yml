@@ -63,7 +63,7 @@ Resources:
           Subnets: !Ref Subnets
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
-    DependsOn: ItizenALB
+    DependsOn: ECSALBListenerRule
     Properties:
       Family: !Sub ${AWS::StackName}-app-web
       Memory: 512
