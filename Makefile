@@ -1,5 +1,6 @@
 # TODO: empty s3 bucket before deletation
 # TODO: empty ecr repository before deletation
+# TODO: 引数を使ってまとめる
 pipeline-validate:
 	aws cloudformation validate-template --template-body file://pipeline.yml
 pipeline-create:pipeline-validate
@@ -20,7 +21,7 @@ ecs-validate:
 	aws cloudformation validate-template --template-body file://ecs.yml
 ecs-create:ecs-validate
 	aws cloudformation create-stack --stack-name ecs-itizen \
-	--template-body file://pipeline.yml \
+	--template-body file://ecs.yml \
 	--capabilities CAPABILITY_IAM \
 	--parameters ParameterKey=Subnets,ParameterValue='subnet-37ac516f\,subnet-94f72ce2' \
 	ParameterKey=SourceSecurityGroup,ParameterValue=sg-04ce930d54d7241df \
@@ -28,7 +29,7 @@ ecs-create:ecs-validate
 ecs-update:ecs-validate,
 	aws cloudformation update-stack \
 	--stack-name ecs-itizen \
-	--template-body file://pipeline.yml \
+	--template-body file://ecs.yml \
 	--capabilities CAPABILITY_IAM \
 	--parameters ParameterKey=Subnets,ParameterValue='subnet-37ac516f\,subnet-94f72ce2' \
 	ParameterKey=SourceSecurityGroup,ParameterValue=sg-04ce930d54d7241df \
