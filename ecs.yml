@@ -73,6 +73,15 @@ Resources:
       ContainerDefinitions:
         - Name: app
           Image: 848738341109.dkr.ecr.us-east-1.amazonaws.com/app-itizen:latest
+          EntryPoint:
+            - bundle
+            - exec
+            - rails
+            - s
+            - -p
+            - 3000
+            - -b
+            - '0.0.0.0'
           Essential: true
           Memory: 256
           PortMappings:
