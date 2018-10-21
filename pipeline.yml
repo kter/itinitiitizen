@@ -173,7 +173,7 @@ Resources:
                   - ecr:BatchCheckLayerAvailability
                   - ecr:PutImage
                 Resource:
-                  - 'arn:aws:ecr:*:*:repository/app'
+                  - 'arn:aws:ecr:*:*:repository/app-itizen'
                   # - 'arn:aws:ecr:*:*:repository/web'
                   #- ''
                   #- - 'arn:aws:ecr:*:*:repository/'
@@ -273,26 +273,26 @@ Resources:
               Configuration: 
                 ProjectName: !Ref AppBuildProject
               RunOrder: 1
-        -
-          Name: deploy
-          Actions: 
-            - 
-              Name: DeployAppToECS
-              InputArtifacts: 
-                - 
-                  Name: AppBuildOutput
-              ActionTypeId: 
-                Category: Deploy
-                Owner: AWS
-                Version: 1
-                Provider: ECS
-              Configuration:
-                ClusterName:
-                  Fn::ImportValue: !Sub ${ECSStackName}-ECSCluster
-                ServiceName:
-                  Fn::ImportValue: !Sub ${ECSStackName}-ECSService
-                FileName: appimagedefinitions.json
-              RunOrder: 1
+        #-
+        #  Name: deploy
+        #  Actions: 
+        #    - 
+        #      Name: DeployAppToECS
+        #      InputArtifacts: 
+        #        - 
+        #          Name: AppBuildOutput
+        #      ActionTypeId: 
+        #        Category: Deploy
+        #        Owner: AWS
+        #        Version: 1
+        #        Provider: ECS
+        #      Configuration:
+        #        ClusterName:
+        #          Fn::ImportValue: !Sub ${ECSStackName}-ECSCluster
+        #        ServiceName:
+        #          Fn::ImportValue: !Sub ${ECSStackName}-ECSService
+        #        FileName: appimagedefinitions.json
+        #      RunOrder: 1
       ArtifactStore: 
         Type: S3
         Location: !Ref ArtifactStoreS3
