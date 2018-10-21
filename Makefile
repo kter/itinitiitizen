@@ -27,7 +27,7 @@ ecs-create:validate
 	--parameters ParameterKey=Subnets,ParameterValue='subnet-37ac516f\,subnet-94f72ce2' \
 	ParameterKey=SourceSecurityGroup,ParameterValue=sg-04ce930d54d7241df \
 	ParameterKey=VPC,ParameterValue=vpc-cecea5aa
-ecs-update:validate,
+ecs-update:validate
 	aws cloudformation update-stack \
 	--stack-name ecs-itizen \
 	--template-body file://ecs.yml \
