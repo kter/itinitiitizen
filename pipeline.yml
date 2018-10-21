@@ -38,6 +38,7 @@ Resources:
   #     RepositoryName: !Ref WebImageRepositoryName
   AppImageRepository:
     Type: AWS::ECR::Repository
+    DeletionPolicy: Retain
     Properties:
       RepositoryName: !Ref AppImageRepositoryName
   ArtifactStoreS3:
@@ -273,26 +274,26 @@ Resources:
               Configuration: 
                 ProjectName: !Ref AppBuildProject
               RunOrder: 1
-        #-
-        #  Name: deploy
-        #  Actions: 
-        #    - 
-        #      Name: DeployAppToECS
-        #      InputArtifacts: 
-        #        - 
-        #          Name: AppBuildOutput
-        #      ActionTypeId: 
-        #        Category: Deploy
-        #        Owner: AWS
-        #        Version: 1
-        #        Provider: ECS
-        #      Configuration:
-        #        ClusterName:
-        #          Fn::ImportValue: !Sub ${ECSStackName}-ECSCluster
-        #        ServiceName:
-        #          Fn::ImportValue: !Sub ${ECSStackName}-ECSService
-        #        FileName: appimagedefinitions.json
-        #      RunOrder: 1
+        -
+          Name: deploy
+          Actions: 
+            - 
+              Name: DeployAppToECS
+              InputArtifacts: 
+                - 
+                  Name: AppBuildOutput
+              ActionTypeId: 
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: ECS
+              Configuration:
+                ClusterName:
+                  Fn::ImportValue: !Sub ${ECSStackName}-ECSCluster
+                ServiceName:
+                  Fn::ImportValue: !Sub ${ECSStackName}-ECSService
+                FileName: appimagedefinitions.json
+              RunOrder: 1
       ArtifactStore: 
         Type: S3
         Location: !Ref ArtifactStoreS3
