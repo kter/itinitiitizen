@@ -10,7 +10,7 @@ pipeline-create:validate
 	aws cloudformation create-stack --stack-name pipeline-itizen \
 	--template-body file://pipeline.yml \
 	--capabilities CAPABILITY_IAM
-pipeline-update:validate,
+pipeline-update:validate
 	aws cloudformation update-stack \
 	--stack-name pipeline-itizen \
 	--template-body file://pipeline.yml \
