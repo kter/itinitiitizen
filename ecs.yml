@@ -18,10 +18,14 @@ Parameters:
     Type: List<AWS::EC2::Subnet::Id>
   VPC:
     Type: AWS::EC2::VPC::Id
-  DNSDomain:
+  DNSHostedZone:
     Description: Domain name
     Type: String
     Default: "kter.jp."
+  DNSDomain:
+    Description: Domain name
+    Type: String
+    Default: "kter.jp"
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -109,7 +113,7 @@ Resources:
   FrontDNSRecord:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Ref DNSDomain
+      HostedZoneName: !Ref DNSHostedZone
       RecordSets:
         - Name: !Join
             - ''
@@ -126,9 +130,12 @@ Resources:
       DefaultActions:
       - Type: forward
         TargetGroupArn: !Ref 'ECSTG'
+      Certificates:
+        CertificateArn: !Ref ACMCertificate
       LoadBalancerArn: !Ref ItizenALB
-      Port: '80'
-      Protocol: HTTP
+      SslPolicy: ELBSecurityPolicy-2016-08
+      Port: 443
+      Protocol: HTTPS
   ECSALBListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
     DependsOn: ALBListener
@@ -156,6 +163,22 @@ Resources:
       Protocol: HTTP
       UnhealthyThresholdCount: 2
       VpcId: !Ref 'VPC'
+  ACMCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Join
+          - ''
+          - - 'itizen'
+            - '.'
+            - !Ref DNSDomain
+      DomainValidationOptions:
+        - DomainName: !Join
+            - ''
+            - - 'itizen'
+              - '.'
+              - !Ref DNSDomain
+          ValidationDomain: !Ref DNSDomain
+      ValidationMethod: DNS
 Outputs:
   ECSService:
     Value: !Ref ECSService
