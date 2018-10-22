@@ -131,7 +131,7 @@ Resources:
       - Type: forward
         TargetGroupArn: !Ref 'ECSTG'
       Certificates:
-        CertificateArn: !Ref ACMCertificate
+        - CertificateArn: !Ref ACMCertificate
       LoadBalancerArn: !Ref ItizenALB
       SslPolicy: ELBSecurityPolicy-2016-08
       Port: 443
