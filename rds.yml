@@ -41,18 +41,18 @@ Parameters:
     Default: 'false'
     AllowedValues: ['true', 'false']
     ConstraintDescription: must be true or false.
+ DNSHostedZone:
+    Description: Domain name
+    Type: String
+    Default: "kter.jp."
+  DNSDomain:
+    Description: Domain name
+    Type: String
+    Default: "kter.jp"
 Conditions:
   Is-EC2-VPC: !Or [!Equals [!Ref 'AWS::Region', eu-central-1], !Equals [!Ref 'AWS::Region',
       cn-north-1]]
   Is-EC2-Classic: !Not [{Condition: Is-EC2-VPC}]
-DNSHostedZone:
-  Description: Domain name
-  Type: String
-  Default: "kter.jp."
-DNSDomain:
-  Description: Domain name
-  Type: String
-  Default: "kter.jp"
 Resources:
   DBEC2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
