@@ -41,7 +41,7 @@ Parameters:
     Default: 'false'
     AllowedValues: ['true', 'false']
     ConstraintDescription: must be true or false.
- DNSHostedZone:
+  DNSHostedZone:
     Description: Domain name
     Type: String
     Default: "kter.jp."
