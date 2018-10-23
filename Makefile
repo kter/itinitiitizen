@@ -37,3 +37,25 @@ ecs-update:validate
 	ParameterKey=VPC,ParameterValue=vpc-cecea5aa
 ecs-delete:
 	aws cloudformation delete-stack --stack-name ecs-itizen
+
+ecs-create:validate
+	aws cloudformation create-stack --stack-name ecs-itizen \
+	--template-body file://ecs.yml \
+	--capabilities CAPABILITY_IAM \
+	--parameters ParameterKey=DBName,ParameterValue=itizen, \
+  		ParameterKey=DBUser,ParameterValue=itizen, \
+  		ParameterKey=DBPassword,ParameterValue=itizen_rds_pass, \
+  		ParameterKey=EC2SecurityGroup,ParameterValue=sg-04ce930d54d7241df, \
+  		ParameterKey=MultiAZ,ParameterValue=true
+ecs-update:validate
+	aws cloudformation update-stack \
+	--stack-name ecs-itizen \
+	--template-body file://ecs.yml \
+	--capabilities CAPABILITY_IAM \
+	--parameters ParameterKey=DBName,ParameterValue=itizen, \
+  		ParameterKey=DBUser,ParameterValue=itizen, \
+  		ParameterKey=DBPassword,ParameterValue=itizen_rds_pass, \
+  		ParameterKey=EC2SecurityGroup,ParameterValue=sg-04ce930d54d7241df, \
+  		ParameterKey=MultiAZ,ParameterValue=true
+ecs-delete:
+	aws cloudformation delete-stack --stack-name ecs-itizen
