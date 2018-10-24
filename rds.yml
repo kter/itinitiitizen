@@ -62,13 +62,13 @@ Resources:
       - IpProtocol: tcp
         FromPort: '3306'
         ToPort: '3306'
-        SourceSecurityGroupName: !Ref 'EC2SecurityGroup'
+        SourceSecurityGroupId: !Ref 'EC2SecurityGroup'
   DBSecurityGroup:
     Type: AWS::RDS::DBSecurityGroup
     Condition: Is-EC2-Classic
     Properties:
       DBSecurityGroupIngress:
-        EC2SecurityGroupName: !Ref 'EC2SecurityGroup'
+        EC2SecurityGroupId: !Ref 'EC2SecurityGroup'
       GroupDescription: database access
   MasterDB:
     Type: AWS::RDS::DBInstance
