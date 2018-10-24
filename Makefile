@@ -46,7 +46,8 @@ rds-create:validate
   		ParameterKey=DBUser,ParameterValue=itizen \
   		ParameterKey=DBPassword,ParameterValue=itizen_rds_password \
   		ParameterKey=EC2SecurityGroup,ParameterValue=sg-04ce930d54d7241df \
-  		ParameterKey=MultiAZ,ParameterValue=true
+  		ParameterKey=MultiAZ,ParameterValue=true \
+		ParameterKey=VPC,ParameterValue=vpc-cecea5aa
 rds-update:validate
 	aws cloudformation update-stack \
 	--stack-name rds-itizen \
@@ -56,6 +57,7 @@ rds-update:validate
   		ParameterKey=DBUser,ParameterValue=itizen \
   		ParameterKey=DBPassword,ParameterValue=itizen_rds_password \
   		ParameterKey=EC2SecurityGroup,ParameterValue=sg-04ce930d54d7241df \
-  		ParameterKey=MultiAZ,ParameterValue=true
+  		ParameterKey=MultiAZ,ParameterValue=true \
+		ParameterKey=VPC,ParameterValue=vpc-cecea5aa
 rds-delete:
 	aws cloudformation delete-stack --stack-name rds-itizen

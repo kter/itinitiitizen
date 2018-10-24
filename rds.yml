@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: '2010-09-09'
 Metadata: 
   License: Apache-2.0
 Parameters:
+  VPC:
+    Type: AWS::EC2::VPC::Id
   DBName:
     Default: MyDatabase
     Description: The database name
@@ -48,28 +50,17 @@ Parameters:
     Description: Domain name
     Type: String
     Default: "kter.jp"
-Conditions:
-  Is-EC2-VPC: !Or [!Equals [!Ref 'AWS::Region', eu-central-1], !Equals [!Ref 'AWS::Region',
-      cn-north-1]]
-  Is-EC2-Classic: !Not [{Condition: Is-EC2-VPC}]
 Resources:
   DBEC2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
-    Condition: Is-EC2-VPC
     Properties:
-      GroupDescription: Open database for access
+      VpcId: !Ref VPC
+      GroupDescription: "Allow access from specific SecurityGroup"
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '3306'
         ToPort: '3306'
         SourceSecurityGroupId: !Ref 'EC2SecurityGroup'
-  DBSecurityGroup:
-    Type: AWS::RDS::DBSecurityGroup
-    Condition: Is-EC2-Classic
-    Properties:
-      DBSecurityGroupIngress:
-        EC2SecurityGroupId: !Ref 'EC2SecurityGroup'
-      GroupDescription: database access
   MasterDB:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -83,9 +74,8 @@ Resources:
       Tags:
       - Key: Name
         Value: Master Database
-      VPCSecurityGroups: !If [Is-EC2-VPC, [!GetAtt [DBEC2SecurityGroup, GroupId]],
-        !Ref 'AWS::NoValue']
-      DBSecurityGroups: !If [Is-EC2-Classic, [!Ref 'DBSecurityGroup'], !Ref 'AWS::NoValue']
+      VPCSecurityGroups:
+        - !GetAtt DBEC2SecurityGroup.GroupId
     DeletionPolicy: Snapshot
   FrontDNSRecord:
     Type: AWS::Route53::RecordSetGroup
