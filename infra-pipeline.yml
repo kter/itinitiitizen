@@ -13,13 +13,10 @@ Parameters:
     Default: "me@kter.jp"
   Repo:
     Type: String
-    Default: cfn-ci-cd-demo
+    Default: itinitiitizen
   AppName:
     Type: String
-    Default: cfn-ci-cd-demo
-  StackConfigDev:
-    Type: String
-    Default: param.dev.json
+    Default: infra-itizen
   StackConfigProd:
     Type: String
     Default: param.prod.json
@@ -161,10 +158,10 @@ Resources:
                 Version: 1
                 Provider: GitHub
               Configuration:
-                Owner: !Ref Owner
+                Owner: !Ref RepoOwner
                 Repo: !Ref Repo
                 Branch: master
-                OAuthToken: !Ref OAuthToken
+                OAuthToken: !Ref GitHubTokenCodePipeline
               OutputArtifacts:
                 - Name: SourceOutput
         - Name: Test
