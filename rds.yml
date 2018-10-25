@@ -86,7 +86,7 @@ Resources:
       DBSubnetGroupName: !Ref DBSubnetGroup
     DeletionPolicy: Snapshot
   FrontDNSRecord:
-    Type: AWS::Route53::RecordSetGroup
+    Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneName: !Ref DNSHostedZone
       Name: !Join
@@ -95,8 +95,8 @@ Resources:
           - '.'
           - 'itizen'
           - '.'
-          - !Ref DNSDomain
-      Type: A
+          - !Ref DNSHostedZone
+      Type: CNAME
       TTL: '60'
       ResourceRecords:
-        - !GetAtt MasterDB.Endpoint.Address
+      - !GetAtt MasterDB.Endpoint.Address
