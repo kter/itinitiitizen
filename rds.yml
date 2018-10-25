@@ -42,6 +42,8 @@ Parameters:
     Default: 'false'
     AllowedValues: ['true', 'false']
     ConstraintDescription: must be true or false.
+  Subnets:
+    Type: List<AWS::EC2::Subnet::Id>
   DNSHostedZone:
     Description: Domain name
     Type: String
@@ -61,6 +63,11 @@ Resources:
         FromPort: '3306'
         ToPort: '3306'
         SourceSecurityGroupId: !Ref 'EC2SecurityGroup'
+  DBSubnetGroup:
+    Type: "AWS::RDS::DBSubnetGroup"
+    Properties:
+      DBSubnetGroupDescription: "DB SubnetGroup for itizen"
+      SubnetIds: !Ref Subnets
   MasterDB:
     Type: AWS::RDS::DBInstance
     Properties:
@@ -76,6 +83,7 @@ Resources:
         Value: Master Database
       VPCSecurityGroups:
         - !GetAtt DBEC2SecurityGroup.GroupId
+      DBSubnetGroupName: !Ref DBSubnetGroup
     DeletionPolicy: Snapshot
   FrontDNSRecord:
     Type: AWS::Route53::RecordSetGroup
