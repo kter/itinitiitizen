@@ -6,18 +6,18 @@ target = ecs
 validate:
 	aws cloudformation validate-template --template-body file://${target}.yml
 
-pipeline-create:validate
+app-pipeline-create:validate
 	aws cloudformation create-stack --stack-name pipeline-itizen \
 	--template-body file://pipeline.yml \
 	--capabilities CAPABILITY_IAM
-pipeline-update:validate
+app-pipeline-update:validate
 	aws cloudformation update-stack \
 	--stack-name pipeline-itizen \
 	--template-body file://pipeline.yml \
 	--capabilities CAPABILITY_IAM
-pipeline-delete-artifact:
+app-pipeline-delete-artifact:
 	aws s3 rb --force s3://`aws s3 ls | grep itizen-artifact | awk '{ print $$3 }' `
-pipeline-delete:pipeline-delete-artifact
+app-pipeline-delete:pipeline-delete-artifact
 	aws cloudformation delete-stack --stack-name pipeline-itizen
 
 ecs-create:validate
