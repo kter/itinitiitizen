@@ -63,3 +63,15 @@ rds-update:validate
 	    ParameterKey=Subnets,ParameterValue='subnet-37ac516f\,subnet-94f72ce2'
 rds-delete:
 	aws cloudformation delete-stack --stack-name rds-itizen
+
+infra-create:validate
+	aws cloudformation create-stack --stack-name infra-itizen \
+	--template-body file://infra-pipeline.yml \
+	--capabilities CAPABILITY_IAM
+infra-update:validate
+	aws cloudformation update-stack \
+	--stack-name infra-itizen \
+	--template-body file://infra-pipeline.yml \
+	--capabilities CAPABILITY_IAM
+infra-delete:
+	aws cloudformation delete-stack --stack-name infra-itizen
