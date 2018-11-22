@@ -53,3 +53,4 @@ production:
   database: itizen_production
   username: itizen
   password: <%= ENV['ITIZEN_DATABASE_PASSWORD'] %>
+  host: db.itizen.kter.jp
