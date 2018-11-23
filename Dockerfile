@@ -6,3 +6,4 @@ COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
+RUN DB_ADAPTER=nulldb RAILS_ENV=production bundle exec rake assets:precompile
