@@ -30,7 +30,7 @@ Parameters:
   ECSStackName:
     Type: String
     Description: Name of pipeline stackname ( for closs stack reference )
-    Default: ecs-itizen
+    Default: itizen
 Resources:
   # WebImageRepository:
   #   Type: AWS::ECR::Repository
