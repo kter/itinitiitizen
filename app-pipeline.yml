@@ -185,6 +185,12 @@ Resources:
                   - ecs:*
                 Resource:
                   - "*"
+              - Sid: ParameterStoreAccess
+                Effect: Allow
+                Action:
+                  - ssm:GetParameters
+                Resource:
+                  - "*"
   # WebBuildProject:
   #   Description: Creating AWS CodeBuild project
   #   Type: AWS::CodeBuild::Project

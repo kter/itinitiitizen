@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  parameter-store:
+    RAILS_MASTER_KEY: "ITIZEN_RAILS_MASTER_KEY"
+
 phases:
   pre_build:
     commands:
