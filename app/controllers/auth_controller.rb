@@ -1,4 +1,5 @@
 class AuthController < ApplicationController
-  def google_oauth2
+  def callback
+    logger.info request.env
   end
 end
