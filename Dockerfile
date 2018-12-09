@@ -7,4 +7,5 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
 COPY . /myapp
 ARG RAILS_MASTER_KEY
+# TODO: assets:precompileは初期ビルド時に動かないため、ここにあるべきではない。適切な場所に移動する
 RUN DB_ADAPTER=nulldb RAILS_ENV=production bundle exec rake assets:precompile
