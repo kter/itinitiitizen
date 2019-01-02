@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'auth/index'
   devise_for :users
   resources :zens
   root "zens#index"
