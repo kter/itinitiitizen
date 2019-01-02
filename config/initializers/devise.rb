@@ -287,4 +287,10 @@ Devise.setup do |config|
   # ActiveSupport.on_load(:devise_failure_app) do
   #   include Turbolinks::Controller
   # end
+
+  config.omniauth :google_oauth2,
+    ENV['GOOGLE_APP_ID'],
+    ENV['GOOGLE_APP_SECRET'],
+    name: :google,
+    scope: %w(email)
 end
