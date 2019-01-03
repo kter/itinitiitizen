@@ -17,10 +17,13 @@
       <%= form.text_area :content %>
     </div>
 
+    <% if controller.action_name == 'edit' || (controller.action_name == 'index' && params[:id]) %>
     <div class="field">
       <%= form.label :deleted %>
       <%= form.check_box :deleted %>
     </div>
+    <% end %>
+
 
     <div class="actions">
       <%= form.submit %>

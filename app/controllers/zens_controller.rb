@@ -5,7 +5,7 @@ class ZensController < ApplicationController
   # GET /zens
   # GET /zens.json
   def index
-    @zens = Zen.all
+    @zens = Zen.where(deleted: false)
     if params[:id].present?
       set_zen
     else
