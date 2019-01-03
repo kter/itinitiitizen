@@ -1,5 +1,6 @@
 class ZensController < ApplicationController
   before_action :set_zen, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:edit, :update, :create, :destroy]
 
   # GET /zens
   # GET /zens.json
@@ -70,5 +71,11 @@ class ZensController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def zen_params
       params.require(:zen).permit(:content, :deleted)
+    end
+
+    def require_login
+      unless current_user
+        redirect_to zens_path, notice: "You must be logged in to access this section"
+      end
     end
 end

@@ -28,3 +28,4 @@
 
 # MySQL data
 /mysql-data
+.sec_env
