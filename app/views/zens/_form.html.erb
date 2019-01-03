@@ -1,27 +1,29 @@
-<%= form_with(model: zen, local: true) do |form| %>
-  <% if zen.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(zen.errors.count, "error") %> prohibited this zen from being saved:</h2>
+<% if current_user %>
+  <%= form_with(model: zen, local: true) do |form| %>
+    <% if zen.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(zen.errors.count, "error") %> prohibited this zen from being saved:</h2>
 
-      <ul>
-      <% zen.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% zen.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= form.label :deleted %>
+      <%= form.check_box :deleted %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deleted %>
-    <%= form.check_box :deleted %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
