@@ -1,6 +1,7 @@
 class UserController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:edit, :update, :create, :destroy]
+  before_action :require_myself, only: [:edit, :update]
 
   def edit
   end
@@ -30,6 +31,12 @@ class UserController < ApplicationController
 
     def require_login
       unless current_user
+        redirect_to auth_index_path, notice: "You must be logged in to access this section"
+      end
+    end
+
+    def require_myself
+      if @user.id != params[:id]
         redirect_to auth_index_path, notice: "You must be logged in to access this section"
       end
     end
