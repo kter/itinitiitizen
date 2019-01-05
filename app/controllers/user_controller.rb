@@ -36,7 +36,7 @@ class UserController < ApplicationController
     end
 
     def require_myself
-      if @user.id != params[:id]
+      if @user.id != params[:id].to_i
         redirect_to auth_index_path, notice: "You must be logged in to access this section"
       end
     end
