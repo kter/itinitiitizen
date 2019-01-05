@@ -3,6 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :trackable, :omniauthable, omniauth_providers: %i(google)
 
+  def get_nickname
+    return "名無しさん" unless self.nickname
+    self.nickname
+  end
+
   protected
   def self.find_for_google(auth)
     user = User.find_by(email: auth.info.email)
