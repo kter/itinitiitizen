@@ -1,0 +1,10 @@
+takahashi:
+  name: Takahashi
+  provider: google
+  email: takahashi@example.com
+  nickname: taka-chan
+
+sato:
+  name: Sato
+  provider:  google
+  email: sato@example.com
