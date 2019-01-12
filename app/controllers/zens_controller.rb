@@ -25,7 +25,9 @@ class ZensController < ApplicationController
   # POST /zens
   # POST /zens.json
   def create
-    @zen = Zen.new(zen_params)
+    model_params = zen_params
+    model_params[:user_id] = current_user.id
+    @zen = Zen.new(model_params)
 
     respond_to do |format|
       if @zen.save
