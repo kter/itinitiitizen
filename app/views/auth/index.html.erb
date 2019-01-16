@@ -1,12 +1,7 @@
-<h1>Auth#index</h1>
-<%= link_to 'Signin with Google', user_google_omniauth_authorize_path %>
+<% if logged_in? %>
+<h1>こんにちは！ <%= current_user.get_nickname %> さん</h1>
 
-<%= current_user.inspect %>
-<% if current_user %>
----
-ニックネーム: <%= current_user.get_nickname %>
----
----
 <%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
----
+<% else %>
+<%= link_to 'ログインもしくは登録はこちら (要Googleアカウント)', user_google_omniauth_authorize_path %>
 <% end %>
