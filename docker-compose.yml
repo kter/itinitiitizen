@@ -10,7 +10,7 @@ services:
     env_file: .sec_env
     command: bundle exec rails s -p 80 -b '0.0.0.0'
     environment:
-      - APP_URL=https://itizen.kter.jp/
+      - APP_URL=http://localhost/
       - APP_NAME=一日一善
     volumes:
       - .:/myapp
