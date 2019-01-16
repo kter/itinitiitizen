@@ -3,5 +3,5 @@
 
 <%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
 <% else %>
-<%= link_to 'Signin with Google', user_google_omniauth_authorize_path %>
+<%= link_to 'ログインもしくは登録はこちら (要Googleアカウント)', user_google_omniauth_authorize_path %>
 <% end %>
