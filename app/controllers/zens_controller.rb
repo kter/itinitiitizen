@@ -5,7 +5,7 @@ class ZensController < ApplicationController
   # GET /zens
   # GET /zens.json
   def index
-    @zens = Zen.where(deleted: false).paginate(page: params[:page], :per_page => 5)
+    @zens = Zen.where(deleted: false).order("created_at DESC").paginate(page: params[:page], :per_page => 5)
     if params[:id].present?
       set_zen
     else
