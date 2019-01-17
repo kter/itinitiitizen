@@ -1,6 +1,6 @@
 class ZensController < ApplicationController
   before_action :set_zen, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:edit, :update, :create, :destroy]
+  before_action :require_myself, only: [:edit, :update, :create, :destroy]
 
   # GET /zens
   # GET /zens.json
@@ -77,7 +77,13 @@ class ZensController < ApplicationController
 
     def require_login
       unless current_user
-        redirect_to zens_path, notice: "You must be logged in to access this section"
+        redirect_to zens_path, notice: "ログインする必要があります"
+      end
+    end
+
+    def require_myself
+      if current_user.id != Zen.find(params[:id].to_i).user_id
+        redirect_to zens_path, notice: "投稿者本人である必要があります"
       end
     end
 end
