@@ -45,7 +45,7 @@ class ZensController < ApplicationController
   def update
     respond_to do |format|
       if @zen.update(zen_params)
-        format.html { redirect_to zens_url, notice: 'Zen was successfully updated.' }
+        format.html { redirect_to zens_url }
         format.json { render :show, status: :ok, location: @zen }
       else
         format.html { render :edit }
