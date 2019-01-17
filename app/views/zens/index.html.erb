@@ -19,8 +19,10 @@
         <td><%= zen.content %></td>
         <td><%= User.find(zen.user_id).get_nickname %></td>
         <td><%= link_to 'Show', zen %></td>
+        <% if current_user.id == zen.user_id %>
         <td><%= link_to 'Edit', zens_path(id: zen.id) %></td>
         <td><%= link_to 'Destroy', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
