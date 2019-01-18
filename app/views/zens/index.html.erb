@@ -6,31 +6,20 @@
 
 <br>
 
-<table>
-  <thead>
-    <tr>
-      <th>一善の内容</th>
-      <th>お名前</th>
-      <th>投稿日時</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @zens.each do |zen| %>
-      <tr>
-        <td><%= zen.content %></td>
-        <td><%= User.find(zen.user_id).get_nickname %></td>
-        <td><%= zen.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %></td>
-        <td><%= link_to 'Show', zen %></td>
+      <li id="zen-<%= zen.id %>">
+        <%= link_to gravatar_for(zen.user, size: 50), zen.user %>
+        <span class="user"><%= link_to zen.user.get_nickname, zen.user %></span>
+        <span class="content"><%= zen.content %></span>
+        <span class="timestamp">
+        <%= time_ago_in_words(zen.created_at.in_time_zone('Tokyo')) %> 前に投稿されました
         <% if current_user.id == zen.user_id %>
-        <td><%= link_to 'Edit', zens_path(id: zen.id) %></td>
-        <td><%= link_to 'Destroy', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to '編集', zens_path(id: zen.id) %></td>
+          <td><%= link_to '削除', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-      </tr>
+        </span>
+      </li>
     <% end %>
-  </tbody>
-</table>
 
 <%= will_paginate %>
 
