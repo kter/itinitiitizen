@@ -5,6 +5,11 @@
   <%= @zen.content %>
 </p>
 
+<p>
+  <strong>投稿日時</strong>
+  <%= @zen.created_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M:%S') %>
+</p>
+
 <% if current_user.id == @zen.user_id %>
 <%= link_to '編集する', edit_zen_path(@zen) %> |
 <% end %>
