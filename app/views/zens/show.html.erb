@@ -5,10 +5,7 @@
   <%= @zen.content %>
 </p>
 
-<p>
-  <strong>Deleted:</strong>
-  <%= @zen.deleted %>
-</p>
-
+<% if current_user.id == @zen.user_id %>
 <%= link_to 'Edit', edit_zen_path(@zen) %> |
+<% end %>
 <%= link_to 'Back', zens_path %>
