@@ -9,7 +9,7 @@
         <span class="timestamp">
         <%= time_ago_in_words(@zen.created_at.in_time_zone('Tokyo')) %> 前に投稿されました
         </span>
-          <% if current_user.id == @zen.user_id %>
+          <% if current_user && current_user.id == @zen.user_id %>
             <span class="links">
             <%= link_to '編集する', edit_zen_path(@zen) %> |
             <td><%= link_to '削除', @zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
