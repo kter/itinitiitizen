@@ -13,20 +13,20 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :content %>
+      <%= form.label :content, "一善の内容" %>
       <%= form.text_area :content %>
     </div>
 
     <% if controller.action_name == 'edit' || (controller.action_name == 'index' && params[:id]) %>
     <div class="field">
-      <%= form.label :deleted %>
+      <%= form.label :deleted, "削除する場合はチェック" %>
       <%= form.check_box :deleted %>
     </div>
     <% end %>
 
 
     <div class="actions">
-      <%= form.submit %>
+      <%= form.submit "自分の一善を投稿する" %>
     </div>
   <% end %>
 <% end %>
