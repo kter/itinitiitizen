@@ -1,6 +1,7 @@
 class ZensController < ApplicationController
   before_action :set_zen, only: [:show, :edit, :update, :destroy]
-  before_action :require_myself, only: [:edit, :update, :create, :destroy]
+  before_action :require_myself, only: [:edit, :update, :destroy]
+  before_action :require_login, only: [:create]
 
   # GET /zens
   # GET /zens.json
@@ -31,7 +32,7 @@ class ZensController < ApplicationController
 
     respond_to do |format|
       if @zen.save
-        format.html { redirect_to zens_url, notice: 'Zen was successfully created.' }
+        format.html { redirect_to zens_url, notice: '一善が投稿されました。' }
         format.json { render :show, status: :created, location: @zen }
       else
         format.html { render :new }
