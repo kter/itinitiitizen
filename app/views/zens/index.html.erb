@@ -5,7 +5,8 @@
 <%= render 'form', zen: @zen %>
 
 <br>
-
+<div class="row">
+    <ol class="zens">
     <% @zens.each do |zen| %>
       <li id="zen-<%= zen.id %>">
         <%= link_to gravatar_for(zen.user, size: 50), zen.user %>
@@ -13,14 +14,18 @@
         <span class="content"><%= zen.content %></span>
         <span class="timestamp">
         <%= time_ago_in_words(zen.created_at.in_time_zone('Tokyo')) %> 前に投稿されました
+        </span>
         <% if current_user.id == zen.user_id %>
+          <span class="links">
           <td><%= link_to '編集', zens_path(id: zen.id) %></td>
           <td><%= link_to '削除', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </span>
         <% end %>
-        </span>
       </li>
     <% end %>
+    </ol>
 
 <%= will_paginate %>
 
 <br>
+</div>
