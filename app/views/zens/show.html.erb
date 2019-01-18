@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>一善の内容</strong>
   <%= @zen.content %>
 </p>
 
 <% if current_user.id == @zen.user_id %>
-<%= link_to 'Edit', edit_zen_path(@zen) %> |
+<%= link_to '編集する', edit_zen_path(@zen) %> |
 <% end %>
-<%= link_to 'Back', zens_path %>
+<%= link_to '一覧へ戻る', zens_path %>
