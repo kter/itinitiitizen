@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>みんなの一善</h1>
+
+<br>
+<div class="row">
+    <ol class="zens">
+    <% @zens.each do |zen| %>
+      <li id="zen-<%= zen.id %>">
+        <%= link_to gravatar_for(zen.user, size: 50), zen.user %>
+        <span class="user"><%= link_to zen.user.get_nickname, zen.user %></span>
+        <span class="content"><%= zen.content %></span>
+        <span class="timestamp">
+        <%= time_ago_in_words(zen.created_at.in_time_zone('Tokyo')) %> 前に投稿されました
+        </span>
+          <span class="links">
+          <td><%= link_to '詳細', zen_path(id: zen.id) %></td>
+          <% if current_user && current_user.id == zen.user_id %>
+            <td><%= link_to '編集', edit_zen_path(id: zen.id) %></td>
+            <td><%= link_to '削除', zen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+          </span>
+      </li>
+    <% end %>
+    </ol>
+
+<%= will_paginate @zens %>
+
+<br>
+</div>
+
+<%= link_to '一覧へ戻る', zens_path %>

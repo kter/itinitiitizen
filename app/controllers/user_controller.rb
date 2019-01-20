@@ -6,6 +6,10 @@ class UserController < ApplicationController
   def edit
   end
 
+  def show
+    @zens = Zen.where(user_id: params[:id]).where(deleted: false).order("created_at DESC").paginate(page: params[:page], :per_page => 30)
+  end
+
   def update
     respond_to do |format|
       if @user.update(user_params)
