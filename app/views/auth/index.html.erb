@@ -4,4 +4,13 @@
 <%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
 <% else %>
 <%= link_to 'ログインもしくは登録はこちら (要Googleアカウント)', user_google_omniauth_authorize_path %>
+
+<br />
+<br />
+免責事項とプライバシーポリシーをよく読んだ上で登録してください。
+<br />
+<br />
+<%= link_to '免責事項 (クリックで開く)', static_menseki_path, :onclick=>"window.open(this.href,'hoge', 'height=800, width=800');return false;" %>
+<br />
+<%= link_to 'プライバシーポリシー (クリックで開く)', static_privacy_policy_path, :onclick=>"window.open(this.href,'hoge', 'height=800, width=800');return false;" %>
 <% end %>
