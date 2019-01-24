@@ -292,5 +292,5 @@ Devise.setup do |config|
     ENV['GOOGLE_APP_ID'],
     ENV['GOOGLE_APP_SECRET'],
     name: :google,
-    scope: %w(email)
+    scope: %w(profile)
 end
