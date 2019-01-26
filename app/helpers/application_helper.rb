@@ -11,10 +11,9 @@ module ApplicationHelper
         current_user ? true : false
     end
 
-    # 引数で与えられたユーザーのGravatar画像を返す
-    def gravatar_for(user, size = 50)
-      gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
-      gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
-      image_tag(gravatar_url, alt: user.name, class: "gravatar", size: size)
+    # 引数で与えられたユーザーのidenticon画像を返す
+    def identicon_for(user, size = 50)
+      identicon_url = "https://identicon-api.herokuapp.com/#{user.uid}/#{size[:size]}?format=png"
+      image_tag(identicon_url, alt: user.nickname, class: "gravatar", size: size)
     end
 end
