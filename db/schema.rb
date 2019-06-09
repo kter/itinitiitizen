@@ -13,9 +13,10 @@
 ActiveRecord::Schema.define(version: 2019_01_24_160556) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  # enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # create_table "users", force: :cascade do |t|
     t.string "email", default: ""
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -38,7 +39,8 @@ ActiveRecord::Schema.define(version: 2019_01_24_160556) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "zens", force: :cascade do |t|
+  create_table "zens", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # create_table "zens", force: :cascade do |t|
     t.text "content", null: false
     t.boolean "deleted", default: false, null: false
     t.datetime "created_at", null: false

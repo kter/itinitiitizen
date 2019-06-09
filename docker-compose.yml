@@ -1,10 +1,12 @@
 version: '3'
 services:
   db:
-    image: postgres:11.1
+    # image: postgres:11.1
+    image: mysql:5.7.23
     env_file: .env
     volumes:
-      - ./psql-data:/var/lib/pgsql
+      # - ./psql-data:/var/lib/pgsql
+      - ./mysql-data:/var/lib/mysql
   web:
     build: .
     env_file: .sec_env
