@@ -8,7 +8,9 @@ services:
       # - ./psql-data:/var/lib/pgsql
       - ./mysql-data:/var/lib/mysql
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     env_file: .sec_env
     command: bundle exec rails s -p 80 -b '0.0.0.0'
     environment:
