@@ -292,7 +292,7 @@ Devise.setup do |config|
     ENV['GOOGLE_APP_ID'],
     ENV['GOOGLE_APP_SECRET'],
     name: :google,
-    scope: 'profile',
+    scope: 'email, profile',
     prompt: '',
     access_type: 'offline'
 
