@@ -3,13 +3,18 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   app_url %></li>
-            <li>
               <% if logged_in? %>
-                <%= link_to "ユーザー情報", auth_index_path %>
+                <li>
+                  <%= link_to "ユーザー情報", auth_index_path %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", auth_sign_out_path %>
+                </li>
               <% else %>
-                <%= link_to "新規登録 / ログイン", auth_index_path %>
+                <li>
+                  <%= link_to "新規登録 / ログイン", auth_index_path %>
+                </li>
               <% end %>
-            </li>
           </ul>
         </nav>
       </div>
