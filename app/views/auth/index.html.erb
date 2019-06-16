@@ -1,4 +1,6 @@
-<% if logged_in? %>
+<p id="notice"><%= notice %></p>
+
+ <% if logged_in? %>
 <h1>こんにちは！ <%= current_user.get_nickname %> さん</h1>
 
 <%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
