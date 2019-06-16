@@ -60,7 +60,7 @@ class ZensController < ApplicationController
   def destroy
     @zen.destroy
     respond_to do |format|
-      format.html { redirect_to zens_url, notice: 'Zen was successfully destroyed.' }
+      format.html { redirect_to zens_url, notice: t(:zen_destroyed) }
       format.json { head :no_content }
     end
   end

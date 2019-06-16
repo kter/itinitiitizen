@@ -40,6 +40,6 @@ class ZensTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Zen was successfully destroyed"
+    assert_text t(:zen_destroyed)
   end
 end
