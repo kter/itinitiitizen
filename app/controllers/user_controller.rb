@@ -13,7 +13,7 @@ class UserController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to auth_index_url, notice: 'Zen was successfully updated.' }
+        format.html { redirect_to auth_index_url, notice: t(:nickname_updated) }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

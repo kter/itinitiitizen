@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  nickname_updated: "nickname was updated"
+  editing_user: "Editing User"
