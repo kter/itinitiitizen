@@ -3,6 +3,11 @@
  <% if logged_in? %>
 <h1>こんにちは！ <%= current_user.get_nickname %> さん</h1>
 
+<div class="user">
+<%= identicon_for(current_user, size: 50) %>
+<span class="user"><%= current_user.get_nickname %></span>
+</div>
+
 <%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
 <% else %>
 <%= link_to 'ログインもしくは登録はこちら (要Googleアカウント)', user_google_omniauth_authorize_path %>
