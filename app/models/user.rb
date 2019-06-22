@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :trackable, :omniauthable, omniauth_providers: %i(google)
+  has_one_attached :avatar
 
   def get_nickname
     return "名無しさん" unless self.nickname

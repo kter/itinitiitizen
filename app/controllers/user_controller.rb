@@ -12,7 +12,10 @@ class UserController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+
+      created = @user.update(user_params) && @user.avatar.attach(params[:avatar])
+
+      if created
         format.html { redirect_to auth_index_url, notice: t(:nickname_updated) }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -30,7 +33,7 @@ class UserController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:nickname)
+      params.require(:user).permit(:nickname, :avatar)
     end
 
     def require_login
