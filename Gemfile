@@ -72,3 +72,5 @@ gem 'omniauth-google-oauth2'
 gem 'bootstrap-sass'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
+gem "google-cloud-storage", "~> 1.3", require: false
