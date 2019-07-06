@@ -12,7 +12,11 @@ class UserController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+
+      if @user.update(user_params) then
+        if params[:user][:avatar] then
+            @user.avatar.attach(params[:user][:avatar])
+        end
         format.html { redirect_to auth_index_url, notice: t(:nickname_updated) }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -30,7 +34,7 @@ class UserController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:nickname)
+      params.require(:user).permit(:nickname, :avatar)
     end
 
     def require_login

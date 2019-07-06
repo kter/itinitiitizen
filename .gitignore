@@ -29,3 +29,5 @@
 # MySQL data
 /mysql-data
 .sec_env
+
+google-credentials.json
