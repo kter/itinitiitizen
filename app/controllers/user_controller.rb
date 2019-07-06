@@ -13,7 +13,7 @@ class UserController < ApplicationController
   def update
     respond_to do |format|
 
-      created = @user.update(user_params) && @user.avatar.attach(params[:avatar])
+      created = @user.update(user_params) && @user.avatar.attach(params[:user][:avatar])
 
       if created
         format.html { redirect_to auth_index_url, notice: t(:nickname_updated) }
