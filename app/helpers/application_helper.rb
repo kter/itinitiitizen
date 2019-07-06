@@ -13,7 +13,7 @@ module ApplicationHelper
 
     # 引数で与えられたユーザーのidenticon画像を返す
     def identicon_for(user, size = 50)
-      identicon_url = "https://identicon-api.herokuapp.com/#{user.created_at} + #{user.id.to_s}/#{size[:size]}?format=png"
+      identicon_url = "https://identicon-api.herokuapp.com/#{user.created_at} + #{user.id.to_s}/#{size}?format=png"
       image_tag(identicon_url, alt: user.nickname, class: "gravatar", size: size)
     end
 

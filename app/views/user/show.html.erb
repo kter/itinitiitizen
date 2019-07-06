@@ -7,7 +7,7 @@
     <ol class="zens">
     <% @zens.each do |zen| %>
       <li id="zen-<%= zen.id %>">
-        <%= link_to profile_icon_tag(zen.user, size: 50), zen.user %>
+        <%= link_to profile_icon_tag(zen.user, 50), zen.user %>
         <span class="user"><%= link_to zen.user.get_nickname, zen.user %></span>
         <span class="content"><%= zen.content %></span>
         <span class="timestamp">
