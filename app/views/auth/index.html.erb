@@ -8,7 +8,7 @@
 <span class="user"><%= current_user.get_nickname %></span>
 </div>
 
-<%= link_to 'ニックネーム変更はこちら', edit_user_path(:user, id: current_user.id) %>
+<%= link_to 'ユーザー情報の変更はこちら', edit_user_path(:user, id: current_user.id) %>
 <% else %>
 <%= link_to 'ログインもしくは登録はこちら (要Googleアカウント)', user_google_omniauth_authorize_path %>
 
