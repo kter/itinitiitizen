@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   def get_nickname
-    return "名無しさん" unless self.nickname
+    return "名無しさん" if self.nickname.blank?
     self.nickname
   end
 
