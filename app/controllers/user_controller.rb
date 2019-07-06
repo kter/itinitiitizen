@@ -13,9 +13,10 @@ class UserController < ApplicationController
   def update
     respond_to do |format|
 
-      created = @user.update(user_params) && @user.avatar.attach(params[:user][:avatar])
-
-      if created
+      if @user.update(user_params) then
+        if params[:user][:avatar] then
+            @user.avatar.attach(params[:user][:avatar])
+        end
         format.html { redirect_to auth_index_url, notice: t(:nickname_updated) }
         format.json { render :show, status: :ok, location: @user }
       else
