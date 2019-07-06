@@ -16,4 +16,12 @@ module ApplicationHelper
       identicon_url = "https://identicon-api.herokuapp.com/#{user.created_at} + #{user.id.to_s}/#{size[:size]}?format=png"
       image_tag(identicon_url, alt: user.nickname, class: "gravatar", size: size)
     end
+
+    def profile_icon_tag(user, size = 50)
+        if user.avatar.attached?
+            image_tag(user.avatar, alt: user.nickname, class: "gravatar", size: size)
+        else
+            identicon_for(user, size)
+        end
+    end
 end
