@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'static/menseki'
 
   get 'auth/sign_out'
+  post 'reports/count'
 end
