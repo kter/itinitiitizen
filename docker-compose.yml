@@ -10,7 +10,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     tty: true
     stdin_open: true
     env_file: .sec_env
