@@ -11,21 +11,21 @@ google:
   bucket: usercontent.itizen.kter.jp
   keyfile: {
     type: "service_account",
-    project_id: ENV['GCP_PROJECT_ID'],
-    private_key_id: ENV['GCP_PRIVATE_KEY_ID'],
-    private_key: ENV['GCP_PRIVATE_KEY'],
-    client_email: ENV['GCP_CLIENT_EMAIL'],
-    client_id: ENV['GCP_CLIENT_ID'],
+    project_id: <%= ENV['GCP_PROJECT_ID'] %>,
+    private_key_id: <%= ENV['GCP_PRIVATE_KEY_ID'] %>,
+    private_key: <%= ENV['GCP_PRIVATE_KEY'] %>,
+    client_email: <%= ENV['GCP_CLIENT_EMAIL'] %>,
+    client_id: <%= ENV['GCP_CLIENT_ID'] %>,
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
     token_uri: "https://accounts.google.com/o/oauth2/token",
     auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-    client_x509_cert_url: ENV['GCP_CLIENT_X509_CERT_URL']
+    client_x509_cert_url: <%= ENV['GCP_CLIENT_X509_CERT_URL'] %>,
   }
-  project: ENV['GCP_PROJECT_ID']
+  project: <%= ENV['GCP_PROJECT_ID'] %>
 
 devgoogle:
   service: GCS
-  project: itinitiitizen-224108 
+  project: itinitiitizen-224108
   bucket: dev.usercontent.itizen.kter.jp
   credentials: <%= Rails.root.join("google-credentials.json") %>
 
