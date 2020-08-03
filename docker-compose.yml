@@ -10,10 +10,12 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     tty: true
     stdin_open: true
-    env_file: .sec_env
+    env_file:
+      - .sec_env
+      - .env
     command: bundle exec rails s -p 8080 -b '0.0.0.0'
     environment:
       - APP_URL=http://localhost/
