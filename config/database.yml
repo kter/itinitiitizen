@@ -53,7 +53,8 @@ test:
 #
 production:
   <<: *default
-  database: itizen_production
-  username: itizen
-  password: <%= ENV['ITIZEN_DATABASE_PASSWORD'] %>
-  host: db.itizen.kter.jp
+  database: <%= ENV['ITIZEN_DB_NAME'] %>
+  username:  <%= ENV['ITIZEN_DB_USER'] %>
+  password: <%= ENV['ITIZEN_DB_PASS'] %>
+  host:  <%= ENV['ITIZEN_DB_HOST'] %>
+  port:  <%= ENV['ITIZEN_DB_PORT'] %>
