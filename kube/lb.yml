@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: default
+  name: rails-ing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: itinitiitizen.tomohiko.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rails
+              servicePort: 3000

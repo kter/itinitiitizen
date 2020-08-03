@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: rails-config
+data:
+  RAILS_ENV: 'development'

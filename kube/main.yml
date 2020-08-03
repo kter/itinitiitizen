@@ -1,0 +1,78 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: rails
+spec:
+  selector:
+    app: rails
+  type: ClusterIP
+  ports:
+    - name: "rails-port"
+      protocol: "TCP"
+      port: 3000
+      targetPort: 3000
+  #type: NodePort
+  #ports:
+  #  - port: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: rails
+spec:
+  selector:
+    matchLabels:
+      app: rails
+  template:
+    metadata:
+      labels:
+        app: rails
+    spec:
+      containers:
+        - name: rails
+          image: kter/itinitiitizen:latest
+          imagePullPolicy: Always
+          command: ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+          envFrom:
+            - configMapRef:
+                name: rails-config
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: DB_USER
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: DB_PASS
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: DB_HOST
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: DB_NAME
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: DB_PORT
+            - name: RAILS_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: RAILS_ENV
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: SECRET_KEY_BASE
+          ports:
+            - containerPort: 3000
