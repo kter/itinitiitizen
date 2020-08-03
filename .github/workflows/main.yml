@@ -89,13 +89,13 @@ jobs:
       - name: Save Secrets To Cluster
         run: |
           cat << __EOF__ > .credentials
-          DB_USER=${{ secrets.DB_USER }}
-          DB_PASS=${{ secrets.DB_PASS }}
-          DB_HOST=${{ secrets.DB_HOST }}
-          DB_NAME=${{ secrets.DB_NAME }}
-          DB_PORT=${{ secrets.DB_PORT }}
-          RAILS_ENV=${{ secrets.RAILS_ENV }}
-          SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
+          ITIZEN_DB_USER=${{ secrets.DB_USER }}
+          ITIZEN_DB_PASS=${{ secrets.DB_PASS }}
+          ITIZEN_DB_HOST=${{ secrets.DB_HOST }}
+          ITIZEN_DB_NAME=${{ secrets.DB_NAME }}
+          ITIZEN_DB_PORT=${{ secrets.DB_PORT }}
+          ITIZEN_RAILS_ENV=${{ secrets.RAILS_ENV }}
+          ITIZEN_SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
           __EOF__
           kubectl create secret generic credentials --from-env-file .credentials --dry-run -o yaml | kubectl apply -f -
 
