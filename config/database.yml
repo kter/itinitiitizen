@@ -21,8 +21,11 @@ default: &default
 
 development:
   <<: *default
-  database: itizen_development
-  host: db
+  database: <%= ENV['ITIZEN_DB_NAME'] %>
+  username:  <%= ENV['ITIZEN_DB_USER'] %>
+  password: <%= ENV['ITIZEN_DB_PASS'] %>
+  host:  <%= ENV['ITIZEN_DB_HOST'] %>
+  port:  <%= ENV['ITIZEN_DB_PORT'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
