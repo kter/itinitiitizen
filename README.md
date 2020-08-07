@@ -33,7 +33,7 @@ DOCKER_USERNAME
 
 ```
 cd kube
-kubectl create secret generic credentials --from-env-file .env 
+kubectl create secret generic credentials --from-env-file ../.env 
 kubectl apply -f .
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
