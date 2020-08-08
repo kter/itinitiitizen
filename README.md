@@ -5,6 +5,8 @@
 GitHub ActionではGitHubのSecretsで定義されているので特に何もする必要はない。
 
 ```
+APP_URL
+APP_NAME
 DB_HOST
 DB_NAME
 DB_PASS
