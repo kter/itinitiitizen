@@ -15,17 +15,14 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   # username: itizen
-  username: root
-  password: itizen
-  host: db
-
-development:
-  <<: *default
-  database: <%= ENV['ITIZEN_DB_NAME'] %>
   username:  <%= ENV['ITIZEN_DB_USER'] %>
   password: <%= ENV['ITIZEN_DB_PASS'] %>
   host:  <%= ENV['ITIZEN_DB_HOST'] %>
   port:  <%= ENV['ITIZEN_DB_PORT'] %>
+
+development:
+  <<: *default
+  database: <%= ENV['ITIZEN_DB_NAME'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -33,7 +30,6 @@ development:
 test:
   <<: *default
   database: itizen_test
-  host: db
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -57,7 +53,3 @@ test:
 production:
   <<: *default
   database: <%= ENV['ITIZEN_DB_NAME'] %>
-  username:  <%= ENV['ITIZEN_DB_USER'] %>
-  password: <%= ENV['ITIZEN_DB_PASS'] %>
-  host:  <%= ENV['ITIZEN_DB_HOST'] %>
-  port:  <%= ENV['ITIZEN_DB_PORT'] %>
