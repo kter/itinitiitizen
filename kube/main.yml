@@ -84,5 +84,46 @@ spec:
                 secretKeyRef:
                   name: credentials
                   key: SECRET_KEY_BASE
+
+            - name: GCP_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_PROJECT_ID
+            - name: GCP_PRIVATE_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_PRIVATE_KEY_ID
+            - name: GCP_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_PRIVATE_KEY
+            - name: GCP_CLIENT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_CLIENT_EMAIL
+            - name: GCP_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_CLIENT_ID
+            - name: GCP_CLIENT_X509_CERT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GCP_CLIENT_X509_CERT_URL
+            - name: GOOGLE_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GOOGLE_APP_ID
+            - name: GOOGLE_APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: GOOGLE_APP_SECRET
           ports:
             - containerPort: 3000
