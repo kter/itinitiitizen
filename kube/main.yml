@@ -39,88 +39,88 @@ spec:
             - name: APP_NAME
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: APP_NAME
             - name: APP_URL
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: APP_URL
             - name: ITIZEN_DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: DB_USER
             - name: ITIZEN_DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: DB_PASS
             - name: ITIZEN_DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: DB_HOST
             - name: ITIZEN_DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: DB_NAME
             - name: ITIZEN_DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: DB_PORT
             - name: RAILS_ENV
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: RAILS_ENV
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: SECRET_KEY_BASE
 
             - name: GCP_PROJECT_ID
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_PROJECT_ID
             - name: GCP_PRIVATE_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_PRIVATE_KEY_ID
             - name: GCP_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_PRIVATE_KEY
             - name: GCP_CLIENT_EMAIL
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_CLIENT_EMAIL
             - name: GCP_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_CLIENT_ID
             - name: GCP_CLIENT_X509_CERT_URL
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GCP_CLIENT_X509_CERT_URL
             - name: GOOGLE_APP_ID
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GOOGLE_APP_ID
             - name: GOOGLE_APP_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: credentials
+                  name: itizen-credentials
                   key: GOOGLE_APP_SECRET
           ports:
             - containerPort: 3000
