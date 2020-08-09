@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   namespace: default
-  name: setup
+  name: itizen-setup
 spec:
   template:
     metadata:
@@ -14,9 +14,6 @@ spec:
           imagePullPolicy: Always
           command: ["/bin/sh"]
           args: ["-c", "bundle exec rake db:create && bundle exec rake db:migrate"]
-          envFrom:
-            - configMapRef:
-                name: rails-config
           env:
             - name: APP_NAME
               valueFrom:

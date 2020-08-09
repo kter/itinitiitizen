@@ -17,5 +17,6 @@ module Myapp
     # the framework and any gems in your application.
     #
     config.hosts << "itinitiitizen.tomohiko.io"
+    config.hosts << "itizen.tomohiko.io"
   end
 end
