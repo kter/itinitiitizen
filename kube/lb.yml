@@ -2,15 +2,15 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   namespace: default
-  name: rails-ing
+  name: external-lb
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: itinitiitizen.tomohiko.io
+    - host: itizen.tomohiko.io
       http:
         paths:
           - path: /
             backend:
-              serviceName: rails
+              serviceName: itizen-web
               servicePort: 3000
