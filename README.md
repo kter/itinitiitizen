@@ -50,6 +50,7 @@ cd kube
 # update kubectl config
 doctl kubernetes cluster kubeconfig save itinitiitizen
 # env
+# don't forget to update `RAILS_ENV=production`
 kubectl create secret generic itizen-credentials --from-env-file ../.env
 kubectl apply -f config-map.yml
 kubectl apply -f db-preparation.yml
