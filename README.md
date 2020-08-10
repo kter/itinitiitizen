@@ -35,7 +35,7 @@ DOCKER_USERNAME
 
 ```
 cd kube
-kubectl create secret generic credentials --from-env-file ../.env 
+kubectl create secret generic itizen-credentials --from-env-file ../.env 
 kubectl apply -f .
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
@@ -59,3 +59,13 @@ helm install nginx-ingress stable/nginx-ingress --set controller.publishService.
 ```
 
 Edit your hosts or dns point to ingress load balancer.
+
+Install TLS
+
+```
+kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.16.1/cert-manager.crds.yaml
+kubectl create namespace cert-manager
+helm repo add jetstack https://charts.jetstack.io
+helm install cert-manager --version v0.16.1 --namespace cert-manager jetstack/cert-manager
+kubectl apply -f production_issuer.yml
+```

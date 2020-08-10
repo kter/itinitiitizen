@@ -5,7 +5,12 @@ metadata:
   name: external-lb
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+  - hosts:
+    - itizen.tomohiko.io
+    secretName: ingress-tls
   rules:
     - host: itizen.tomohiko.io
       http:
