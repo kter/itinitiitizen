@@ -36,10 +36,7 @@ DOCKER_USERNAME
 ```
 cd kube
 kubectl create secret generic itizen-credentials --from-env-file ../.env 
-kubectl apply -f db-preparation.yml
-kubectl apply -f dev.yml		
-kubectl apply -f lb.yml		
-kubectl apply -f main.yml
+kubectl apply -k dev
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
@@ -56,9 +53,7 @@ doctl kubernetes cluster kubeconfig save itinitiitizen
 # env
 # don't forget to update `RAILS_ENV=production`
 kubectl create secret generic itizen-credentials --from-env-file ../.env
-kubectl apply -f db-preparation.yml
-kubectl apply -f lb.yml
-kubectl apply -f main.yml
+kubectl apply -k production
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
