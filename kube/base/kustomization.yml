@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- db-preparation.yml
+- dev.yml		
+- lb.yml		
+- main.yml

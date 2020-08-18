@@ -69,7 +69,7 @@ datadog:
   ## The site of the Datadog intake to send Agent data to.
   ## Set to 'datadoghq.eu' to send data to the EU site.
   #
-  site:  # datadoghq.com
+  site:  datadoghq.com
 
   ## @param dd_url - string - optional - default: 'https://app.datadoghq.com'
   ## The host of the Datadog intake server to send Agent data to, only set this option
@@ -460,7 +460,7 @@ clusterAgent:
     ## @param enabled - boolean - required - default: false
     ## Set this to true to enable Metrics Provider
     #
-    enabled: false
+    enabled: true
 
     ## @param wpaController - boolean - optional
     ## Enable informer and controller of the watermark pod autoscaler
