@@ -6,3 +6,6 @@ resources:
 - dev.yml		
 - lb.yml		
 - main.yml
+
+commonLabels:
+  service: itizen
