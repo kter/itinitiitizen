@@ -8,6 +8,10 @@ spec:
     metadata:
       name: setup
     spec:
+      initContainers:
+        - name: init-itizen-setup
+          image: busybox:1.28
+          command: ['sh', '-c', "until nslookup prod-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for db; sleep 2; done"]
       containers:
         - name: setup
           image: kter/itinitiitizen:latest

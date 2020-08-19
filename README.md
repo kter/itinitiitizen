@@ -52,7 +52,7 @@ cd kube
 doctl kubernetes cluster kubeconfig save itinitiitizen
 # env
 # don't forget to update `RAILS_ENV=production`
-kubectl create secret generic itizen-credentials --from-env-file ../.env
+kubectl create secret generic itizen-credentials --from-env-file ../.prod-env
 kubectl apply -k production
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
