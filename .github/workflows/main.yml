@@ -110,8 +110,8 @@ jobs:
           kubectl create secret generic credentials --from-env-file .credentials --dry-run -o yaml | kubectl apply -f -
 
       - name: Deploy to DigitalOcean Kubernetes
-        run: kubectl set image --record deployment/itizen-app itizen=${{ github.repository }}:sha-${GITHUB_SHA::7}
+        run: kubectl set image --record deployment/prod-itizen-app itizen=${{ github.repository }}:sha-${GITHUB_SHA::7}
 
       - name: Verify deployment
-        run: kubectl rollout status deployment/itizen-app
+        run: kubectl rollout status deployment/prod-itizen-app
 
