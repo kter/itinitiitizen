@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: default
+  name: itizen-setup
+spec:
+  template:
+    metadata:
+      name: setup
+    spec:
+      initContainers:
+        - name: init-itizen-setup
+          image: busybox:1.28
+          command: ['sh', '-c', "until nslookup dev-db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for db; sleep 2; done"]
