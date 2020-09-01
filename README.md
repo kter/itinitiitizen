@@ -36,26 +36,25 @@ DOCKER_USERNAME
 ```
 cd kube
 kubectl create secret generic itizen-credentials --from-env-file ../.env 
-kubectl apply -f .
+kubectl apply -k dev
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
 
 ## DigitalOcean (production)
 
 
-Fill the credentials in ../.env-prd
+Fill the credentials in ../.prod-env
 
 ```
 cd kube
 # update kubectl config
-doctl kubernetes cluster kubeconfig save itinitiitizen
+doctl kubernetes cluster kubeconfig save itizen
 # env
 # don't forget to update `RAILS_ENV=production`
-kubectl create secret generic itizen-credentials --from-env-file ../.env
-kubectl apply -f config-map.yml
-kubectl apply -f db-preparation.yml
-kubectl apply -f lb.yml
-kubectl apply -f main.yml
+kubectl create secret generic itizen-credentials --from-env-file ../.prod-env
+kubectl apply -k production
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 helm install nginx-ingress stable/nginx-ingress --set controller.publishService.enabled=true
 ```
 
@@ -69,4 +68,25 @@ kubectl create namespace cert-manager
 helm repo add jetstack https://charts.jetstack.io
 helm install cert-manager --version v0.16.1 --namespace cert-manager jetstack/cert-manager
 kubectl apply -f production_issuer.yml
+```
+
+Install Datadog Agent
+
+```
+helm install datadog-agent -f datadog-values.yaml --set datadog.site='datadoghq.com' --set datadog.apiKey=(API KEY) stable/datadog
+```
+
+Install NewRelic
+
+```
+helm repo add newrelic https://helm-charts.newrelic.com
+helm install newrelic-bundle newrelic/nri-bundle \
+ --set global.licenseKey=__REPLACE_ME__ \
+ --set global.cluster=main \
+ --namespace=default \
+ --set newrelic-infrastructure.privileged=true \
+ --set ksm.enabled=true \
+ --set prometheus.enabled=true \
+ --set kubeEvents.enabled=true \
+ --set logging.enabled=true 
 ```
