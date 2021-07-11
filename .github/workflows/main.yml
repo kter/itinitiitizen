@@ -20,7 +20,6 @@ jobs:
       - name: Checkout GitHub Actions
         uses: actions/checkout@v2
 
-       Ref: https://github.com/aws-actions/amazon-ecs-deploy-task-definition
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
