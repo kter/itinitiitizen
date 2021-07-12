@@ -1,0 +1,155 @@
+{
+  "ipcMode": null,
+  "executionRoleArn": "arn:aws:iam::848738341109:role/infra-itizen-prod-ECS-HM94NCYYTV-TaskExecutionRole-BXFESOUL8W1W",
+  "containerDefinitions": [
+    {
+      "dnsSearchDomains": [],
+      "environmentFiles": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "secretOptions": [],
+        "options": {
+          "awslogs-group": "/ecs/itizen",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "itizen"
+        }
+      },
+      "entryPoint": [
+        "bundle",
+        "exec",
+        "rails",
+        "s",
+        "-p",
+        "80",
+        "-b",
+        "0.0.0.0"
+      ],
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "protocol": "tcp",
+          "containerPort": 80
+        }
+      ],
+      "command": [],
+      "linuxParameters": null,
+      "cpu": 0,
+      "environment": [
+        {
+          "name": "RAILS_ENV",
+          "value": "production"
+        }
+      ],
+      "resourceRequirements": null,
+      "ulimits": [],
+      "dnsServers": [],
+      "mountPoints": [],
+      "workingDirectory": null,
+      "secrets": [
+        {
+          "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/ITIZEN_RAILS_MASTER_KEY",
+          "name": "RAILS_MASTER_KEY"
+        },
+        {
+          "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/itizen_rds_password_sec",
+          "name": "ITIZEN_DATABASE_PASSWORD"
+        }
+      ],
+      "dockerSecurityOptions": [],
+      "memory": 256,
+      "memoryReservation": null,
+      "volumesFrom": [],
+      "stopTimeout": null,
+      "image": "kter/itinitiitizen:latest",
+      "startTimeout": null,
+      "firelensConfiguration": null,
+      "dependsOn": null,
+      "disableNetworking": null,
+      "interactive": null,
+      "healthCheck": null,
+      "essential": true,
+      "links": [],
+      "hostname": null,
+      "extraHosts": [],
+      "pseudoTerminal": null,
+      "user": null,
+      "readonlyRootFilesystem": null,
+      "dockerLabels": {},
+      "systemControls": [],
+      "privileged": null,
+      "name": "app"
+    }
+  ],
+  "placementConstraints": [],
+  "memory": "512",
+  "taskRoleArn": null,
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "family": "itizen-app-web",
+  "requiresAttributes": [
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.secrets.ssm.environment-variables"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "ecs.capability.task-eni"
+    }
+  ],
+  "pidMode": null,
+  "requiresCompatibilities": [],
+  "networkMode": "awsvpc",
+  "cpu": "256",
+  "status": "ACTIVE",
+  "inferenceAccelerators": null,
+  "proxyConfiguration": null,
+  "volumes": []
+}
