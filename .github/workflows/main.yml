@@ -75,7 +75,7 @@ jobs:
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: web
-          cluster: blockshare
+          cluster: itizen
           wait-for-service-stability: true
   #deploy:
   #  name: Deploy to Production
