@@ -47,8 +47,8 @@
       "workingDirectory": null,
       "secrets": [
         {
-          "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/ITIZEN_RAILS_MASTER_KEY",
-          "name": "RAILS_MASTER_KEY"
+          "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/ITIZEN_RAILS_SECRET_KEY_BASE",
+          "name": "SECRET_KEY_BASE"
         },
         {
           "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/itizen_rds_password_sec",
