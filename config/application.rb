@@ -18,5 +18,6 @@ module Myapp
     #
     config.hosts << "itinitiitizen.tomohiko.io"
     config.hosts << "itizen.tomohiko.io"
+    config.hosts << "localhost"
   end
 end
