@@ -97,7 +97,7 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "512",
+  "memory": "2048",
   "taskRoleArn": "arn:aws:iam::848738341109:role/infra-itizen-prod-ECS-HM94NCYYTVXF-TaskRole-1N6EAICA5ZU5E",
   "compatibilities": [
     "EC2",
@@ -163,7 +163,7 @@
   "pidMode": null,
   "requiresCompatibilities": [],
   "networkMode": "awsvpc",
-  "cpu": "256",
+  "cpu": "1024",
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
