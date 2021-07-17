@@ -33,7 +33,7 @@
       ],
       "command": [],
       "linuxParameters": null,
-      "cpu": 0,
+      "cpu": 1024,
       "environment": [
         {
           "name": "RAILS_ENV",
@@ -72,7 +72,7 @@
         }
       ],
       "dockerSecurityOptions": [],
-      "memory": 256,
+      "memory": "2048",
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
