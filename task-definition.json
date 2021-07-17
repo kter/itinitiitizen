@@ -98,7 +98,7 @@
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": null,
+  "taskRoleArn": "arn:aws:iam::848738341109:role/infra-itizen-prod-ECS-HM94NCYYTVXF-TaskRole-1N6EAICA5ZU5E",
   "compatibilities": [
     "EC2",
     "FARGATE"
