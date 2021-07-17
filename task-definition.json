@@ -68,7 +68,7 @@
         },
         {
           "valueFrom": "arn:aws:ssm:us-east-1:848738341109:parameter/itizen_rds_password_sec",
-          "name": "ITIZEN_DATABASE_PASSWORD"
+          "name": "ITIZEN_DB_PASS"
         }
       ],
       "dockerSecurityOptions": [],
