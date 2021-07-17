@@ -42,6 +42,18 @@
         {
           "name": "RAILS_LOG_TO_STDOUT",
           "value": "true"
+        },
+        {
+          "name": "ITIZEN_DB_USER",
+          "value": "itizen"
+        },
+        {
+          "name": "ITIZEN_DB_NAME",
+          "value": "itizen_production"
+        },
+        {
+          "name": "ITIZEN_DB_HOST",
+          "value": "db.itizen.tomohiko.io"
         }
       ],
       "resourceRequirements": null,
