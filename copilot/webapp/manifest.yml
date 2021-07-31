@@ -39,7 +39,8 @@ secrets:
 # You can override any of the values defined above by environment.
 environments:
   test:
-    RAILS_ENV: development
-    ITIZEN_DB_HOST: itizen-test-webapp-addonss-webappclusterdbcluster-1b1yyw5uku23s.cluster-cir26ubvkxrw.us-east-1.rds.amazonaws.com
-    ITIZEN_DB_USER: admin
-    ITIZEN_DB_NAME: itizen
+    variables:
+      RAILS_ENV: development
+      ITIZEN_DB_HOST: itizen-test-webapp-addonss-webappclusterdbcluster-1b1yyw5uku23s.cluster-cir26ubvkxrw.us-east-1.rds.amazonaws.com
+      ITIZEN_DB_USER: admin
+      ITIZEN_DB_NAME: itizen
