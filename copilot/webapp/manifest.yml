@@ -44,3 +44,4 @@ environments:
       ITIZEN_DB_HOST: itizen-test-webapp-addonss-webappclusterdbcluster-1b1yyw5uku23s.cluster-cir26ubvkxrw.us-east-1.rds.amazonaws.com
       ITIZEN_DB_USER: admin
       ITIZEN_DB_NAME: itizen
+      APP_NAME: '一日一善'
