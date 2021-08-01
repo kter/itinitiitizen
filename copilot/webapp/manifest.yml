@@ -13,6 +13,7 @@ http:
   path: '/'
   # You can specify a custom health check path. The default is "/".
   healthcheck: '/okcomputer'
+  #alias: 'itizen.tomohiko.io'
 
 # Configuration for your containers and service.
 image:

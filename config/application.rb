@@ -18,6 +18,7 @@ module Myapp
     #
     config.hosts << "itinitiitizen.tomohiko.io"
     config.hosts << "itizen.tomohiko.io"
+    config.hosts << "itize-publi-1fsihxd1mplba-1940268722.us-east-1.elb.amazonaws.com"
     config.hosts << "localhost"
   end
 end
