@@ -74,8 +74,8 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: infra-itizen-prod-ECS-HM94NCYYTVXF-ECSService-1H61w50i1jPJ
-          cluster: itizen
+          service: itizen-test-webapp-Service-IfCniJVdGBl0
+          cluster: itizen-test-Cluster-F7sShjDAEBPf
           wait-for-service-stability: true
   #deploy:
   #  name: Deploy to Production
