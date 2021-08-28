@@ -79,3 +79,4 @@ gem 'bootstrap-will_paginate'
 gem "google-cloud-storage", "~> 1.3", require: false
 gem "webpacker"
 gem "okcomputer"
+gem "omniauth-rails_csrf_protection"
