@@ -16,14 +16,14 @@ services:
     env_file:
       - .sec_env
       - .env
-    command: bundle exec rails s -p 80 -b '0.0.0.0'
+    command: bundle exec rails s -p 8081 -b '0.0.0.0'
     environment:
       - APP_URL=http://localhost/
       - APP_NAME=一日一善
     volumes:
       - .:/myapp
     ports:
-      - "80:80"
+      - "8081:8081"
     depends_on:
       - db
 
