@@ -21,5 +21,6 @@ module Myapp
     config.hosts << "itizen.herokuapp.com"
     config.hosts << "itize-publi-1fsihxd1mplba-1940268722.us-east-1.elb.amazonaws.com"
     config.hosts << "localhost"
+    config.hosts << "code.tomohiko.io"
   end
 end
