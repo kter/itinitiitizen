@@ -53,3 +53,7 @@ test:
 production:
   <<: *default
   database: <%= ENV['ITIZEN_DB_NAME'] %>
+
+staging:
+  <<: *default
+  database: <%= ENV['ITIZEN_DB_NAME'] %>
